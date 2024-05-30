@@ -1,9 +1,12 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { Wheel } from 'react-custom-roulette';
 import Confetti from 'react-confetti';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
+import Share from './ShareBtn';
+import KakaoShare from './KakaoShare';
 
 const data = [
   { option: 'Option 1' },
@@ -27,6 +30,9 @@ function captureAndSaveScreenshot() {
 
 function App() {
 
+  const page = 'https://pvvng.github.io/hostRoulette/'
+  const facebook = [`https://www.facebook.com/sharer/sharer.php?u=${page}`, '/facebook.png', '페이스북']
+  const naver = [`https://share.naver.com/web/shareView?url=${page}&title=룰렛 돌리면 100퍼센트 보상 지급`,'/naver.png' ,'네이버']
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [confettiStatus, setConfettiStatus] = useState(false)
@@ -100,9 +106,30 @@ function App() {
         setPrizeName('두근두근..')
       }}>Spin</button>
 
-      <h1>당첨 상품</h1>
-      <p>{prizeName}</p>
-      <button onClick={()=>{captureAndSaveScreenshot()}}>화면 캡처하기</button>
+      <div className='mt-5'>
+        <h1>당첨 상품</h1>
+        <p>{prizeName}</p>
+      </div>
+
+      <div className='mt-5'>
+        <h4>공유하기</h4>
+        <div className='row'>
+          <div className='col-4'>
+            <Share page={facebook} />
+          </div>
+          <div className='col-4'>
+            <Share page={naver} />
+          </div>
+          <div className='col-4'>
+            <KakaoShare />
+          </div>
+        </div>
+
+        <button className='mt-5' onClick={()=>{captureAndSaveScreenshot()}}>화면 캡처하기</button>
+
+      </div>
+
+
     </div>
   );
 }

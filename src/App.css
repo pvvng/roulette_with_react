@@ -15,3 +15,8 @@
 .hide-confetti{
   display: none;
 }
+
+.share-btn{
+  border: none;
+  background-color: none;
+}
