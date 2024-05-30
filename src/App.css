@@ -8,8 +8,8 @@
 }
 
 .wheel-container {
-  /* width: 50%; 룰렛을 원하는 너비로 설정합니다. */
-  max-width: 500px; /* 선택적으로 최대 너비를 설정할 수 있습니다. */
+  /* 선택적으로 최대 너비를 설정 */
+  max-width: 500px; 
 }
 
 .hide-confetti{

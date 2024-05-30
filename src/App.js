@@ -1,51 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import React, { useEffect, useState, useMemo, useRef } from 'react';
-import { Wheel } from 'react-custom-roulette';
+import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
-import html2canvas from 'html2canvas';
-import { saveAs } from 'file-saver';
-import Share from './ShareBtn';
-import KakaoShare from './KakaoShare';
-
-const data = [
-  { option: 'Option 1' },
-  { option: 'Option 2' },
-  { option: 'Option 3' },
-  { option: 'Option 4' },
-  { option: 'Option 5' },
-  { option: 'Option 6' },
-];
-
-function captureAndSaveScreenshot() {
-  // 화면 전체를 캡처합니다.
-  html2canvas(document.body).then(function(canvas) {
-    // 캡처된 캔버스를 이미지로 변환합니다.
-    canvas.toBlob(function(blob) {
-      // Blob을 파일로 저장합니다.
-      saveAs(blob, 'screenshot.png');
-    });
-  });
-}
+import Share from './SNSbtns/ShareBtn';
+import KakaoShare from './SNSbtns/KakaoShare';
+import data from './dataSets/data';
+import captureAndSaveScreenshot from './functions/captureAndSaveScreenshot';
+import WheelComponent from './components/WheelComponent';
+import { facebook, naver } from './dataSets/searchBtnSetting';
+import handleSpinClick from './functions/handleSpinClick';
 
 function App() {
 
-  const page = 'https://pvvng.github.io/hostRoulette/'
-  const facebook = [`https://www.facebook.com/sharer/sharer.php?u=${page}`, '/facebook.png', '페이스북']
-  const naver = [`https://share.naver.com/web/shareView?url=${page}&title=룰렛 돌리면 100퍼센트 보상 지급`,'/naver.png' ,'네이버']
+  // search btn setting
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
-  const [confettiStatus, setConfettiStatus] = useState(false)
+  const [confettiStatus, setConfettiStatus] = useState(false);
   let [prizeName, setPrizeName] = useState('버튼을 눌러 룰렛을 돌려보세요!');
-
-  function handleSpinClick (){
-    const newPrizeNumber = Math.floor(Math.random() * data.length);
-    setPrizeNumber(newPrizeNumber);
-    setMustSpin(true);
-  };
 
   useEffect(()=>{
     let timer
+
     if(mustSpin){
       timer = setTimeout(()=>{
         setConfettiStatus(true);
@@ -54,40 +29,19 @@ function App() {
     }
 
     return () => clearTimeout(timer);
-
-  },[mustSpin])
+  },[mustSpin, prizeNumber])
 
   useEffect(()=>{
-
     let cTimer = setTimeout(()=>{
       setConfettiStatus(false);
     },3000)
 
     return ()=> clearTimeout(cTimer);
-
   },[confettiStatus])
-
-  // mustSpin이나 prizeNumber가 변경될 때에만 새로운 Wheel 컴포넌트 생성
-  const wheelComponent = useMemo(() => (
-    <Wheel
-      mustStartSpinning={mustSpin}
-      prizeNumber={prizeNumber}
-      data={data}
-      onStopSpinning={() => {
-        setMustSpin(false);
-      }}
-      backgroundColors={['#99CCFF', '#6699FF', '#3366FF']}
-      textColors={['#ffffff']}
-      outerBorderColor={'black'}
-      outerBorderWidth={5}
-      radiusLineColor={'black'}
-      radiusLineWidth={3}
-      fontSize={16}
-    />
-  ), [mustSpin, prizeNumber]); 
 
   return (
     <div className="App">
+      {/* 돌리기 완료시 파티클 뿌리기 */}
       {
         confettiStatus?
         <Confetti
@@ -98,19 +52,22 @@ function App() {
         />:null
       }
 
+      {/* 룰렛 돌리기 버튼 */}
       <div className='wheel-container'>
-        {wheelComponent}
+        <WheelComponent data={data} mustSpin={mustSpin} setMustSpin={setMustSpin} prizeNumber={prizeNumber} />
       </div>
-      <button onClick={()=>{
-        handleSpinClick();
+      <button className='btn btn-primary' onClick={()=>{
+        handleSpinClick(data, setPrizeNumber, setMustSpin);
         setPrizeName('두근두근..')
-      }}>Spin</button>
+      }}>돌리기!</button>
 
+      {/* 당첨 상품 표시 container */}
       <div className='mt-5'>
         <h1>당첨 상품</h1>
         <p>{prizeName}</p>
       </div>
 
+      {/* 공유하기 버튼 container */}
       <div className='mt-5'>
         <h4>공유하기</h4>
         <div className='row'>
@@ -125,13 +82,14 @@ function App() {
           </div>
         </div>
 
-        <button className='mt-5' onClick={()=>{captureAndSaveScreenshot()}}>화면 캡처하기</button>
+        {/* 화면 캡쳐 버튼 */}
+        <button className='mt-5 btn btn-secondary' onClick={()=>{captureAndSaveScreenshot()}}>화면 캡처하기</button>
 
       </div>
-
-
     </div>
   );
 }
+
+
 
 export default App;
