@@ -67,54 +67,44 @@ function App() {
           height={window.innerHeight * 10}
         />:null
       }
-      {/* image1 */}
-      <div>
-        <img src={process.env.PUBLIC_URL + '/001.png'} width={'100%'} alt='image1' style={{maxWidth:'1024px'}} />      
+
+
+      {/* image */}
+      <img className='mb-2' src={process.env.PUBLIC_URL + '/금산.png'} width={'100%'}  alt='image3' style={{maxWidth:'1024px'}} />
+
+
+
+      {/* 룰렛 & 룰렛 돌리기 버튼 */}
+      <div className='wheel-container'>
+        <WheelComponent data={data} mustSpin={mustSpin} setMustSpin={setMustSpin} prizeNumber={prizeNumber} />
+        <button className='mt-4 btn spin-btn' style={{background:spinBtnBackColor, color: spinBtnColor, fontWeight:'bold'}} onClick={()=>{
+          // 룰렛을 이미 돌렸는지 감시
+          if(localStorage.getItem('사용') === '1'){
+            alert('이미 룰렛을 돌렸어요.')
+          }else{
+            setPrizeName('두근두근..');
+            handleSpinClick(data, setPrizeNumber, setMustSpin);
+            localStorage.setItem('사용', 1);
+          }
+    
+        }}>돌리기!</button>
       </div>
-      {/* image2 */}
-      <div>
-        <img src={process.env.PUBLIC_URL + '/002.png'} width={'100%'} alt='image2' style={{maxWidth:'1024px'}} />
+
+      {/* 당첨 상품 표시 container */}
+      <div className='mt-5'>
+        <h2 style={{fontWeight:'bold', color:'#D94925'}}>당첨 상품</h2>
+        <h5 className='mt-3' style={{fontWeight:'bold'}}>{prizeName}</h5>
       </div>
 
-      {/* image3 & contents */}
-      <div className='App mt-5'>
-        {/* image 3 */}
-        <img className='mb-2' src={process.env.PUBLIC_URL + '/003.png'} width={'100%'}  alt='image3' style={{maxWidth:'1024px'}} />
-
-
-
-        {/* 룰렛 & 룰렛 돌리기 버튼 */}
-        <div className='wheel-container'>
-          <WheelComponent data={data} mustSpin={mustSpin} setMustSpin={setMustSpin} prizeNumber={prizeNumber} />
-          <button className='mt-4 btn spin-btn' style={{background:spinBtnBackColor, color: spinBtnColor, fontWeight:'bold'}} onClick={()=>{
-            // 룰렛을 이미 돌렸는지 감시
-            if(localStorage.getItem('사용') === '1'){
-              alert('이미 룰렛을 돌렸어요.')
-            }else{
-              setPrizeName('두근두근..');
-              handleSpinClick(data, setPrizeNumber, setMustSpin);
-              localStorage.setItem('사용', 1);
-            }
-      
-          }}>돌리기!</button>
-        </div>
-
-        {/* 당첨 상품 표시 container */}
-        <div className='mt-5'>
-          <h2 style={{fontWeight:'bold', color:'#D94925'}}>당첨 상품</h2>
-          <h5 className='mt-3' style={{fontWeight:'bold'}}>{prizeName}</h5>
-        </div>
-
-        {/* sns쉐어버튼 */}
-        <ShareBTNsContainer/>
-        {/* 화면 캡쳐 버튼 */}
-        <div className='p-1 screenshot-btn'>
-          {/* <div className='mb-2'>
-            <span className='hidden-screenshot-text'> 화면 캡처하기</span>
-          </div> */}
-          <div className='btn btn-secondary mb-5 mx-2 p-3' style={{borderRadius:'10000px'}} onClick={()=>{captureAndSaveScreenshot()}}>
-            <FontAwesomeIcon icon={faCamera} className='fs-1' />
-          </div>
+      {/* sns쉐어버튼 */}
+      <ShareBTNsContainer/>
+      {/* 화면 캡쳐 버튼 */}
+      <div className='p-1 screenshot-btn'>
+        {/* <div className='mb-2'>
+          <span className='hidden-screenshot-text'> 화면 캡처하기</span>
+        </div> */}
+        <div className='btn btn-secondary mb-5 mx-2 p-3' style={{borderRadius:'10000px'}} onClick={()=>{captureAndSaveScreenshot()}}>
+          <FontAwesomeIcon icon={faCamera} className='fs-1' />
         </div>
       </div>
 
