@@ -109,12 +109,12 @@ function App() {
         <ShareBTNsContainer/>
         {/* 화면 캡쳐 버튼 */}
         <div className='p-1 screenshot-btn'>
-          <div className='mb-2'>
+          {/* <div className='mb-2'>
             <span className='hidden-screenshot-text'> 화면 캡처하기</span>
-          </div>
-          <button className='btn btn-secondary mb-5 mx-2 p-3' style={{borderRadius:'10000px'}} onClick={()=>{captureAndSaveScreenshot()}}>
+          </div> */}
+          <div className='btn btn-secondary mb-5 mx-2 p-3' style={{borderRadius:'10000px'}} onClick={()=>{captureAndSaveScreenshot()}}>
             <FontAwesomeIcon icon={faCamera} className='fs-1' />
-          </button>
+          </div>
         </div>
       </div>
 
