@@ -38,17 +38,17 @@
 .hidden-screenshot-text{
   font-weight: bold;
   margin-bottom: 0;
-  opacity: 0;
+  /* opacity: 0; */
   transition: all 0.5s;
   background-color: #eee;
   padding: 10px;
 }
 
-
+/* 
 .screenshot-btn:hover{
   .hidden-screenshot-text{
     opacity :1
   }
-}
+} */
 
 

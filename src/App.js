@@ -121,11 +121,11 @@ function App() {
       {/* footer */}
       <div style={{width:'100%', padding:20, color:'white', background:'#D94925', borderTopLeftRadius:'30px', borderTopRightRadius:'30px'}}>
         <div className='row'>
-          <div className='col-9' style={{textAlign:'left'}}>
+          <div className='col-sm-9' style={{textAlign:'left'}}>
             <h2 style={{fontWeight:'bold'}}>제 42회 금산 세계 인삼 축제</h2>
             <p>2024.10.03 ~ 2024.10.13</p>
           </div>
-          <div className='col-3' style={{marginTop:'auto', marginBottom:'auto'}}>
+          <div className='col-sm-3' style={{marginTop:'auto', marginBottom:'auto'}}>
             <img src='/MobilioLogo.png' width={'100px'} alt='mobilio'/>
           </div>
         </div>
