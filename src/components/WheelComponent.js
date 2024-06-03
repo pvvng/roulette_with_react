@@ -5,8 +5,8 @@ import { outerBorderColor, radiusLineColor, textColors, wheelBackColor } from '.
 // memo를 사용해서 props가 변경될 때에만 새로운 Wheel 컴포넌트 생성하도록
 const WheelComponent = memo(function WheelComponent({data, mustSpin, setMustSpin, prizeNumber}){
 return(
-        <div className='roulette-container'>
-            <div className='wheel-container' style={{border:'20px solid #FD8B69', padding:0, borderRadius:'1000px'}}>
+        <div className='roulette-container' style={{width:'100%'}}>
+            <div className='wheel-container' width='100%' style={{border:'20px solid #FD8B69', padding:20, borderRadius:'10000px'}}>
                 <Wheel
                     mustStartSpinning={mustSpin}
                     prizeNumber={prizeNumber}
