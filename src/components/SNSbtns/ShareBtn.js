@@ -5,14 +5,14 @@
 
 export default function Share ({page}){
     
-    function onClickFacebook (){
+    function onClickSNS (){
         window.open(page[0])
     }
 
     return (
-    <div className="Facebook">
+    <div style={{cursor:'pointer'}}>
         <img 
-            onClick={onClickFacebook} 
+            onClick={onClickSNS} 
             alt={`${page[2]} 공유`}
             src = {process.env.PUBLIC_URL + page[1]}
             width={'50px'} 
