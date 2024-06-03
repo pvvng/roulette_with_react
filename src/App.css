@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap');
+
 .App {
   text-align: center;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: bold;
 }
 
 .wheel-container {
@@ -20,3 +24,31 @@
   border: none;
   background-color: none;
 }
+
+.share-btn-container{
+  max-width: 1024px;
+  box-shadow: 5px 2px 5px grey;
+}
+
+.screenshot-btn{
+  width: 100%;
+  text-align: right;
+}
+
+.hidden-screenshot-text{
+  font-weight: bold;
+  margin-bottom: 0;
+  opacity: 0;
+  transition: all 0.5s;
+  background-color: #eee;
+  padding: 10px;
+}
+
+
+.screenshot-btn:hover{
+  .hidden-screenshot-text{
+    opacity :1
+  }
+}
+
+
