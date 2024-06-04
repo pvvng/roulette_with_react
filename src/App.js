@@ -68,9 +68,8 @@ function App() {
         />:null
       }
 
-
       {/* image */}
-      <img className='mb-2' src={process.env.PUBLIC_URL + '/금산.png'} width={'100%'}  alt='image3' style={{maxWidth:'1024px'}} />
+      <img className='mb-2' src={process.env.PUBLIC_URL + '/금산.png'} width='100%' alt='image3' style={{maxWidth:'1024px'}} />
 
       {/* 룰렛 & 룰렛 돌리기 버튼 */}
       <div className='wheel-container'>
@@ -102,14 +101,14 @@ function App() {
       {/* sns쉐어버튼 */}
       <ShareBTNsContainer/>
       {/* 화면 캡쳐 버튼 */}
-      <div>
+      {/* <div>
         <div className='mb-2 hidden-screenshot-text' style={{textAlign:'right'}}>
           <span className=''> 화면 캡처하기</span>
         </div>
         <div className='btn btn-secondary mb-5 mx-2 p-3 screenshot-btn' style={{borderRadius:'10000px'}} onClick={()=>{captureAndSaveScreenshot()}}>
           <FontAwesomeIcon icon={faCamera} className='fs-1' />
         </div>
-      </div>
+      </div> */}
 
       {/* footer */}
       <div style={{width:'100%', padding:20, color:'white', background:'#D94925', borderTopLeftRadius:'30px', borderTopRightRadius:'30px'}}>
