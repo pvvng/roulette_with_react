@@ -40,4 +40,5 @@ let spinBtnColor = 'white'
 
 export { wheelBackColor, outerBorderColor, radiusLineColor, textColors, spinBtnBackColor, spinBtnColor }
 ```
-
+5. append .env file
+  - you need kakao developer api key
