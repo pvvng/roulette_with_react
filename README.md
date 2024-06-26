@@ -17,8 +17,8 @@ git clone https://github.com/pvvng/roulette_with_react.git
 
 ```javascript
 /**
-* 룰렛 설정
-* app/src/wheelSetting
+* 룰렛 설정 변경 방법
+* /src/dataSets/wheelSetting.js
 */
 
 // 룰렛 색 설정 (옵션 갯수만큼 색 추가 가능)
