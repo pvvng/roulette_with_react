@@ -45,7 +45,7 @@ export default function KakaoShare() {
   		<img 
         id='kakaotalk-sharing-btn' 
         alt='카카오톡 공유' 
-        src={process.env.PUBLIC_URL + '/kakao.webp'} 
+        src={process.env.PUBLIC_URL + '/social-network-image/kakao.webp'} 
         width={'50px'} 
         height={'50px'}
         onClick={()=>{kakaoButton()}}

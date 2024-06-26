@@ -5,9 +5,9 @@ import Confetti from 'react-confetti';
 import data from './dataSets/data';
 import WheelComponent from './components/WheelComponent';
 import handleSpinClick from './functions/handleSpinClick';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera } from '@fortawesome/free-solid-svg-icons';
-import captureAndSaveScreenshot from './functions/captureAndSaveScreenshot'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCamera } from '@fortawesome/free-solid-svg-icons';
+// import captureAndSaveScreenshot from './functions/captureAndSaveScreenshot'
 import ShareBTNsContainer from './components/SNSbtnsContainer';
 import { spinBtnBackColor, spinBtnColor } from './dataSets/wheelSetting';
 
@@ -69,7 +69,7 @@ function App() {
       }
 
       {/* image */}
-      <img className='mb-2' src={process.env.PUBLIC_URL + '/금산.png'} width='100%' alt='image3' style={{maxWidth:'1024px'}} />
+      <img className='mb-2' src={process.env.PUBLIC_URL + '/금산이미지/금산.png'} width='100%' alt='image3' style={{maxWidth:'1024px'}} />
 
       {/* 룰렛 & 룰렛 돌리기 버튼 */}
       <div className='wheel-container'>
@@ -126,7 +126,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;
