@@ -8,3 +8,8 @@ React js로 만든 룰렛 이벤트 페이지입니다.
 
 
 금산 인삼 축제에서 홍보용으로 사용될 예정입니다.
+
+``` bash
+git init
+git clone https://github.com/pvvng/roulette_with_react.git
+```
