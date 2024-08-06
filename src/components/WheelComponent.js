@@ -6,7 +6,7 @@ import { outerBorderColor, radiusLineColor, textColors, wheelBackColor } from '.
 const WheelComponent = memo(function WheelComponent({data, mustSpin, setMustSpin, prizeNumber}){
 return(
         <div className='roulette-container' style={{width:'100%'}}>
-            <div className='wheel-container' width='100%' style={{border:'20px solid #FD8B69', padding:20, borderRadius:'10000px'}}>
+            <div className='wheel-container' width='100%' style={{border:`20px solid ${outerBorderColor}`, padding:20, borderRadius:'10000px'}}>
                 <Wheel
                     mustStartSpinning={mustSpin}
                     prizeNumber={prizeNumber}

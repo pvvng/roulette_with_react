@@ -1,3 +1,4 @@
+/** 상품 목록 */
 const data = [
     { option: '꽝' },
     { option: '인삼 한 뿌리' },

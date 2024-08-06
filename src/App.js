@@ -13,6 +13,7 @@ import { spinBtnBackColor, spinBtnColor } from './dataSets/wheelSetting';
 
 function App() {
 
+  const [isImageLoad, setIsImageLoad] = useState(false);
   // 룰렛이 돌아갔는지 감시하는 상태
   const [mustSpin, setMustSpin] = useState(false);
   // 당첨 상품 number 저장하는 상태
@@ -21,6 +22,11 @@ function App() {
   const [confettiStatus, setConfettiStatus] = useState(false);
   // 당첨 상품 html에 보여주는 state
   let [prizeName, setPrizeName] = useState('버튼을 눌러 룰렛을 돌려보세요!');
+
+  // 이미지가 로드된 후 호출되는 핸들러 함수
+  const handleImageLoad = () => {
+    setIsImageLoad(true);
+  };
 
   // 룰렛이 돌아갔거나, 당첨 상품이 변경되었다면 실행
   useEffect(()=>{
@@ -52,6 +58,11 @@ function App() {
     return ()=> clearTimeout(cTimer);
   },[confettiStatus])
 
+  useEffect(() => {
+    console.log(isImageLoad)
+  },[isImageLoad])
+
+
   return (
     <div className="App">
 
@@ -63,13 +74,26 @@ function App() {
           recycle = {false}
           style={{ position: 'absolute', zIndex: 1000 }}
           gravity={0.5}
-          width={window.innerWidth}
+          width={window.innerWidth - 40}
           height={window.innerHeight * 10}
         />:null
       }
 
       {/* image */}
-      <img className='mb-2' src={process.env.PUBLIC_URL + '/금산이미지/금산.png'} width='100%' alt='image3' style={{maxWidth:'1024px'}} />
+      <div>
+        {/* 이미지가 로드된 후에만 렌더링되는 내용 */}
+        {!isImageLoad ? <p>이미지 로딩 중...</p> : null}
+
+        {/* 이미지 태그 */}
+        <img 
+          className='mb-2' 
+          src={process.env.PUBLIC_URL + '/금산이미지/금산.png'} 
+          width='100%' 
+          alt='image3' 
+          style={{ maxWidth: '1024px' }} 
+          onLoad={handleImageLoad}
+        />
+      </div>
 
       {/* 룰렛 & 룰렛 돌리기 버튼 */}
       <div className='wheel-container'>
@@ -81,13 +105,13 @@ function App() {
         </div>
 
         <button className='mt-4 btn spin-btn' style={{background:spinBtnBackColor, color: spinBtnColor, fontWeight:'bold'}} onClick={()=>{
-          // 룰렛을 이미 돌렸는지 감시
-          if(localStorage.getItem('사용') === '1'){
+          // 룰렛을 이미 돌렸는지 localstorage로 감시
+          if(localStorage.getItem('used') === '1'){
             alert('이미 룰렛을 돌렸어요.')
           }else{
             setPrizeName('두근두근..');
             handleSpinClick(data, setPrizeNumber, setMustSpin);
-            localStorage.setItem('사용', 1);
+            localStorage.setItem('used', 1);
           }
         }}>돌리기!</button>
       </div>
